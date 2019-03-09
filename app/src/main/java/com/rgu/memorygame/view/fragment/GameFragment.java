@@ -2,7 +2,6 @@ package com.rgu.memorygame.view.fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -13,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rgu.memorygame.GameType;
+import com.rgu.memorygame.enums.GameType;
 import com.rgu.memorygame.R;
 import com.rgu.memorygame.Utils;
 import com.rgu.memorygame.databinding.FragmentGameBinding;

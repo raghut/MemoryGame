@@ -40,10 +40,6 @@ public class ImagesAdapter extends RecyclerView.Adapter<
         holder.updateView(position);
     }
 
-    public List<Integer> getImageItems() {
-        return mImageItems;
-    }
-
     @Override
     public int getItemCount() {
         return mImageItems.size();

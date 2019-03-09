@@ -4,7 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.rgu.memorygame.GameType;
+import com.rgu.memorygame.enums.GameType;
 import com.rgu.memorygame.R;
 import com.rgu.memorygame.databinding.ActivityHomeBinding;
 import com.rgu.memorygame.view.fragment.GameFragment;

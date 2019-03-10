@@ -60,17 +60,15 @@ public class ImagesAdapter extends RecyclerView.Adapter<
             flipToFlipperMode(itemImageLayoutBinding.viewFliper);
 
             itemImageLayoutBinding.viewFliper.setOnClickListener(v -> {
+                flipToNormalMode(itemImageLayoutBinding.viewFliper);
+
                 if (firstSelectionView == null) {
                     firstSelectionView = ImageViewHolder.this;
                 } else if (mImageItems.get(firstSelectionView.position).equals(mImageItems.get(position))) {
                     hideImages(itemView, firstSelectionView.itemView);
                 } else {
-                    flipToFlipperMode(firstSelectionView.itemImageLayoutBinding.viewFliper);
-                    flipToFlipperMode(itemImageLayoutBinding.viewFliper);
-                    firstSelectionView = null;
+                    flipToFlipperMode(firstSelectionView.itemImageLayoutBinding.viewFliper, itemImageLayoutBinding.viewFliper);
                 }
-
-                flipToNormalMode(itemImageLayoutBinding.viewFliper);
             });
         }
 
@@ -82,6 +80,15 @@ public class ImagesAdapter extends RecyclerView.Adapter<
             new Handler().postDelayed(() -> {
                 view1.setVisibility(View.GONE);
                 view2.setVisibility(View.GONE);
+                firstSelectionView = null;
+            }, 1000);
+        }
+
+        private void flipToFlipperMode(ViewFlipper viewFliper1, ViewFlipper viewFliper2) {
+            new Handler().postDelayed(() -> {
+                flipToFlipperMode(viewFliper1);
+                flipToFlipperMode(viewFliper2);
+                firstSelectionView = null;
             }, 1000);
         }
 

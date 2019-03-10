@@ -23,6 +23,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<
     private List<Integer> mImageItems;
 
     private ImageViewHolder firstSelectionView;
+    private boolean shouldClickIntercept;
 
     public ImagesAdapter(Context context, Integer[] randomList) {
         mImageItems = Arrays.asList(randomList);
@@ -60,13 +61,19 @@ public class ImagesAdapter extends RecyclerView.Adapter<
             flipToFlipperMode(itemImageLayoutBinding.viewFliper);
 
             itemImageLayoutBinding.viewFliper.setOnClickListener(v -> {
+                if (shouldClickIntercept) {
+                    return;
+                }
+
                 flipToNormalMode(itemImageLayoutBinding.viewFliper);
 
                 if (firstSelectionView == null) {
                     firstSelectionView = ImageViewHolder.this;
                 } else if (mImageItems.get(firstSelectionView.position).equals(mImageItems.get(position))) {
+                    shouldClickIntercept = true;
                     hideImages(itemView, firstSelectionView.itemView);
                 } else {
+                    shouldClickIntercept = true;
                     flipToFlipperMode(firstSelectionView.itemImageLayoutBinding.viewFliper, itemImageLayoutBinding.viewFliper);
                 }
             });
@@ -81,6 +88,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<
                 view1.setVisibility(View.GONE);
                 view2.setVisibility(View.GONE);
                 firstSelectionView = null;
+                shouldClickIntercept = false;
             }, 1000);
         }
 
@@ -89,6 +97,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<
                 flipToFlipperMode(viewFliper1);
                 flipToFlipperMode(viewFliper2);
                 firstSelectionView = null;
+                shouldClickIntercept = false;
             }, 1000);
         }
 
